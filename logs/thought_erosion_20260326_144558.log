@@ -1,0 +1,39 @@
+Started: Thu Mar 26 14:45:58 UTC 2026
+2026-03-26 14:46:04.105524: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-26 14:46:05.001855: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+Loading labels...
+Loading baseline traces...
+Loading probe direction...
+  Probe direction: shape=(3584,), balanced_acc=0.773, auroc=0.862
+Built sample list: 486 samples
+[Dry run] Using first 20 samples
+Loading model: Qwen/Qwen2.5-7B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  1.70it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.62it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  1.56it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.56it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.58it/s]
+[Resume] Loading cached activations from results/thought_erosion/raw_erosion_data.npz
+[Resume] Found 20 completed samples
+[Resume] All samples complete.
+
+Dataset: N=20, label0=5, label1=15
+Short thoughts (<10 tokens): 0
+Behavioral stop: 20, continue: 0
+A3 rescued: 1
+Thought length: mean=44.2, median=43.5, min=20, max=71
+
+=== Training probes at each position ===
+  p0_input: AUROC=0.6667, BalAcc=0.5000
+  p1_25pct: AUROC=0.3333, BalAcc=0.5000
+  p2_50pct: AUROC=0.6667, BalAcc=0.5000
+  p3_75pct: AUROC=0.0000, BalAcc=0.3333
+  p4_100pct: AUROC=0.6667, BalAcc=0.3333
+
+=== Probe direction projection analysis ===
+Traceback (most recent call last):
+  File "/home/featurize/work/tmc/scripts/e2e_agent/scripts/thought_erosion_probe.py", line 853, in <module>
+    main()
+  File "/home/featurize/work/tmc/scripts/e2e_agent/scripts/thought_erosion_probe.py", line 759, in main
+    print(f"  {pos_name}: "
+          ^^^^^^^^^^^^^^^^^
+TypeError: unsupported format string passed to NoneType.__format__
+Finished: Thu Mar 26 14:46:20 UTC 2026

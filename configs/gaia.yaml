@@ -1,0 +1,59 @@
+# GAIA Experiment Configuration
+# Tier 2 application: Mixed adopt/reject scenarios
+
+experiment:
+  name: gaia_tier2
+  description: "Real E2E tasks with ambiguous tool adoption scenarios"
+  tier: 2
+  target_side: dynamic  # Depends on sample
+
+data:
+  dataset: gaia
+  data_path: "data/gaia/gaia_subset.jsonl"
+  corpus_path: "data/gaia/corpus.jsonl"
+  n_samples: 50
+  seed: 42
+  conflict_only: true  # Focus on ambiguous samples
+
+model:
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  dtype: bfloat16
+  device_map: auto
+
+agent:
+  max_steps: 10
+  max_tokens_per_step: 256
+  temperature: 0.0
+  tools:
+    - search
+    - calculator
+
+steering:
+  layer: 12
+  position: -1
+  direction_path: "oral_experiment_v7/direction_boundary.npz"
+  direction_key: "decision_direction"
+
+policies:
+  baseline:
+    type: baseline
+    
+  jes:
+    type: jes
+    tau: 0.2
+    eps: 0.02
+    rho_max: 0.25
+
+evaluation:
+  score_mode: exact
+  metrics:
+    - success_rate
+    - mean_tool_calls
+    - tool_precision
+    - tool_recall
+
+output:
+  results_dir: "results/gaia"
+  save_jsonl: true
+  save_summary: true
+

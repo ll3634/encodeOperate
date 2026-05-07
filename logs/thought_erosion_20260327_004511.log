@@ -1,0 +1,82 @@
+Started: Fri Mar 27 00:45:11 UTC 2026
+2026-03-27 00:45:17.575797: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-27 00:45:18.838289: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+Loading labels...
+Loading baseline traces...
+Loading probe direction...
+  Probe direction: shape=(3584,), balanced_acc=0.773, auroc=0.862
+Built sample list: 486 samples
+
+[NOTE] This experiment uses REACT_THOUGHT_SYSTEM_PROMPT (allows 'Thought: ...').
+       Phase-1 probe direction was extracted with DEFAULT_SYSTEM_PROMPT (no Thought).
+       p0_input activations come from a DIFFERENT prompt format than Phase-1.
+       Within-experiment comparisons (p0→p4 erosion) are internally consistent.
+       Cross-experiment comparison to Phase-1 AUROC requires caution.
+
+Loading model: Qwen/Qwen2.5-7B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.18it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.12it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.10it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.12it/s]
+[Resume] Loading cached activations from results/thought_erosion/raw_erosion_data.npz
+[Resume] Found 486 completed samples
+[Resume] All samples complete.
+
+Dataset: N=486, label0=97, label1=389
+Short thoughts (<10 tokens): 0
+Behavioral stop: 471, continue: 15
+A3 rescued: 18
+Thought length: mean=44.2, median=42.0, min=15, max=115
+
+=== Training probes at each position ===
+  p0_input: AUROC=0.8981, BalAcc=0.7359
+  p1_25pct: AUROC=0.7814, BalAcc=0.6801
+  p2_50pct: AUROC=0.6603, BalAcc=0.5494
+  p3_75pct: AUROC=0.6090, BalAcc=0.6051
+  p4_100pct: AUROC=0.7365, BalAcc=0.6237
+
+=== Probe direction projection analysis ===
+  NOTE: projection direction = Phase-1 probe (DEFAULT_SYSTEM_PROMPT, decision-point).
+        p0_input activations use REACT_THOUGHT_SYSTEM_PROMPT — not directly comparable
+        to Phase-1 values, but within-experiment position comparisons are valid.
+
+  p0_input: label0=-0.2248  label1=+0.9750  gap=+1.1998  stop=+0.7478  cont=+0.3510
+  p1_25pct: label0=-0.2400  label1=+0.3609  gap=+0.6008  stop=+0.2422  cont=+0.2025
+  p2_50pct: label0=-0.1421  label1=+0.3306  gap=+0.4727  stop=+0.2211  cont=+0.7113
+  p3_75pct: label0=+0.4509  label1=+0.8947  gap=+0.4439  stop=+0.8047  cont=+0.8508
+  p4_100pct: label0=+1.3717  label1=+1.7247  gap=+0.3530  stop=+1.6499  cont=+1.7919
+
+=== Fixed-direction AUROC (Phase-1 probe direction at all positions) ===
+  This uses the SAME direction everywhere — no re-training.
+  Measures whether the ORIGINAL evidence signal persists.
+
+  p0_input:  fixed=0.9488  retrained=0.8981
+  p1_25pct:  fixed=0.6327  retrained=0.7814
+  p2_50pct:  fixed=0.6017  retrained=0.6603
+  p3_75pct:  fixed=0.5861  retrained=0.6090
+  p4_100pct:  fixed=0.5860  retrained=0.7365
+
+=== Erosion Summary ===
+  Re-trained AUROC drop (p0→p4): +0.1615
+  Fixed-dir AUROC drop (p0→p4): +0.3627
+  ✓ EVIDENCE SIGNAL EROSION DETECTED (fixed-dir, >0.15)
+  Projection gap drop (p0→p4): +0.8468  (1.200 → 0.353)
+  Label=0 projection drift (p0→p4): +1.5965  (-0.225 → +1.372)
+  ✓ SIGNAL INVERSION: label=0 crosses from 'insufficient' to 'sufficient' side
+
+Saved results to results/thought_erosion/erosion_results.json
+Saved plot to results/thought_erosion/erosion_curves.png
+
+=====================================================================================
+EROSION CURVE — Evidence Signal During Thought Generation
+=====================================================================================
+Position        Retrained  Fixed-Dir   Proj_L0   Proj_L1      Gap   BalAcc
+                    AUROC      AUROC    (mean)    (mean)    L1-L0         
+-------------------------------------------------------------------------------------
+p0_input           0.8981     0.9488   -0.2248   +0.9750  +1.1998   0.7359
+p1_25pct           0.7814     0.6327   -0.2400   +0.3609  +0.6008   0.6801
+p2_50pct           0.6603     0.6017   -0.1421   +0.3306  +0.4727   0.5494
+p3_75pct           0.6090     0.5861   +0.4509   +0.8947  +0.4439   0.6051
+p4_100pct          0.7365     0.5860   +1.3717   +1.7247  +0.3530   0.6237
+
+Done. All outputs in: results/thought_erosion/
+Finished: Fri Mar 27 00:45:45 UTC 2026

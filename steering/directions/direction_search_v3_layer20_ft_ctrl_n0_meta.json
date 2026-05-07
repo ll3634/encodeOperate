@@ -1,0 +1,19 @@
+{
+  "layer": 20,
+  "position": -1,
+  "n_samples_analyzed": 200,
+  "n_low_margin": 40,
+  "n_high_margin": 40,
+  "low_margin_percentile": 20,
+  "high_margin_percentile": 80,
+  "low_margin_threshold": 11.374999714204023,
+  "high_margin_threshold": 13.375000238430584,
+  "direction_norm": 17.42916488647461,
+  "direction_rms": 0.2911337912082672,
+  "margin_stats": {
+    "mean": 12.401874929200167,
+    "std": 1.1692597697870242,
+    "min": 9.375000364132575,
+    "max": 14.75000035762912
+  }
+}

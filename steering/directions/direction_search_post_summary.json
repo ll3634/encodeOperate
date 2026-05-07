@@ -1,0 +1,16 @@
+{
+  "n_pairs": 300,
+  "layer": 12,
+  "seed": 123,
+  "type_filter": "bridge",
+  "direction_norm": 1.6824218034744263,
+  "direction_rms": 0.02810288406908512,
+  "method": "paired_observation",
+  "domain": "search",
+  "context": "post_tool",
+  "margin_relevant_mean": -3.467048333333333,
+  "margin_irrelevant_mean": -1.7281053333333334,
+  "margin_diff_mean": 1.7389396666666668,
+  "correct_sign_fraction": 0.7266666666666667,
+  "description": "d = h_irrelevant - h_relevant (decision_direction, toward NON-ADOPT). Paired observation method: same question, relevant vs irrelevant search results. Eliminates domain mismatch (search, not calculator) and context mismatch (post-tool Step 1, not pre-tool Step 0)."
+}

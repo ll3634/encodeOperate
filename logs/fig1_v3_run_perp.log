@@ -1,0 +1,74 @@
+nohup: ignoring input
+[init] L20 N=100
+[directions] 32 perp directions to inject
+  sample E1_LR_L20_perp: cos·A=+1.02e-08  ||v||=1.0000
+  sample E2_Ridge_L20_perp: cos·A=-1.86e-09  ||v||=1.0000
+  sample E3_MeanDiff_L20_perp: cos·A=+1.30e-08  ||v||=1.0000
+  sample E4_PCA_L20_perp: cos·A=-2.00e-08  ||v||=1.0000
+  sample ExL12_LR_perp: cos·A=-4.66e-10  ||v||=1.0000
+
+[load tok] /home/featurize/work/models/Qwen2.5-7B-Instruct
+[prompts] N=100  baseline mean margin=-4.886
+
+[load model]
+2026-05-05 04:55:51.269952: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-05-05 04:55:52.259752: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.07s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.02it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.02it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.11it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.07it/s]
+  [  1/100]  ETA=273s
+  [  5/100]  ETA=254s
+  [ 10/100]  ETA=236s
+  [ 15/100]  ETA=222s
+  [ 20/100]  ETA=208s
+  [ 25/100]  ETA=195s
+  [ 30/100]  ETA=183s
+  [ 35/100]  ETA=170s
+  [ 40/100]  ETA=157s
+  [ 45/100]  ETA=144s
+  [ 50/100]  ETA=130s
+  [ 55/100]  ETA=117s
+  [ 60/100]  ETA=104s
+  [ 65/100]  ETA=91s
+  [ 70/100]  ETA=78s
+  [ 75/100]  ETA=65s
+  [ 80/100]  ETA=52s
+  [ 85/100]  ETA=39s
+  [ 90/100]  ETA=26s
+  [ 95/100]  ETA=13s
+  [100/100]  ETA=0s
+[done] forwards: 252s
+
+[results — sorted by |Δm|_perp desc]
+  O3_joint         fam=operative   AUROC=0.548  |Δm|_perp=1.700  CI=[1.550,1.833]
+  E3_MeanDiff_L20  fam=evidence    AUROC=0.674  |Δm|_perp=1.339  CI=[0.993,1.662]
+  E4_PCA_L20       fam=evidence    AUROC=0.619  |Δm|_perp=1.227  CI=[0.129,2.600]
+  O1_D3prime       fam=operative   AUROC=0.509  |Δm|_perp=0.875  CI=[0.764,0.976]
+  O2_D1_source     fam=operative   AUROC=0.571  |Δm|_perp=0.484  CI=[0.391,0.576]
+  rand10           fam=random      AUROC=0.546  |Δm|_perp=0.206  CI=[0.176,0.235]
+  rand01           fam=random      AUROC=0.643  |Δm|_perp=0.147  CI=[0.117,0.181]
+  rand04           fam=random      AUROC=0.636  |Δm|_perp=0.147  CI=[0.119,0.179]
+  ExL12_LR         fam=evidence_x  AUROC=0.571  |Δm|_perp=0.142  CI=[0.115,0.171]
+  ExL16_LR         fam=evidence_x  AUROC=0.584  |Δm|_perp=0.119  CI=[0.094,0.145]
+  rand17           fam=random      AUROC=0.533  |Δm|_perp=0.091  CI=[0.069,0.116]
+  rand03           fam=random      AUROC=0.508  |Δm|_perp=0.089  CI=[0.062,0.114]
+  rand16           fam=random      AUROC=0.500  |Δm|_perp=0.081  CI=[0.060,0.104]
+  rand02           fam=random      AUROC=0.524  |Δm|_perp=0.074  CI=[0.045,0.105]
+  rand11           fam=random      AUROC=0.569  |Δm|_perp=0.070  CI=[0.049,0.090]
+  I1_D2bal         fam=inert       AUROC=0.519  |Δm|_perp=0.068  CI=[0.040,0.097]
+  E1_LR_L20        fam=evidence    AUROC=0.825  |Δm|_perp=0.066  CI=[0.031,0.100]
+  rand09           fam=random      AUROC=0.546  |Δm|_perp=0.050  CI=[0.028,0.072]
+  I2_D4_obslen     fam=inert       AUROC=0.525  |Δm|_perp=0.045  CI=[0.018,0.074]
+  rand18           fam=random      AUROC=0.583  |Δm|_perp=0.045  CI=[0.017,0.070]
+  rand19           fam=random      AUROC=0.572  |Δm|_perp=0.029  CI=[0.008,0.050]
+  rand08           fam=random      AUROC=0.604  |Δm|_perp=0.026  CI=[0.005,0.047]
+  rand00           fam=random      AUROC=0.592  |Δm|_perp=0.023  CI=[0.003,0.043]
+  rand06           fam=random      AUROC=0.538  |Δm|_perp=0.019  CI=[0.001,0.039]
+  rand05           fam=random      AUROC=0.569  |Δm|_perp=0.016  CI=[0.001,0.039]
+  E2_Ridge_L20     fam=evidence    AUROC=0.786  |Δm|_perp=0.014  CI=[0.001,0.033]
+  ExL24_LR         fam=evidence_x  AUROC=0.745  |Δm|_perp=0.014  CI=[0.001,0.039]
+  rand12           fam=random      AUROC=0.556  |Δm|_perp=0.009  CI=[0.000,0.029]
+  rand15           fam=random      AUROC=0.595  |Δm|_perp=0.006  CI=[0.000,0.030]
+  rand14           fam=random      AUROC=0.581  |Δm|_perp=0.004  CI=[0.000,0.025]
+  rand13           fam=random      AUROC=0.558  |Δm|_perp=0.001  CI=[0.000,0.029]
+  rand07           fam=random      AUROC=0.513  |Δm|_perp=0.001  CI=[0.000,0.021]

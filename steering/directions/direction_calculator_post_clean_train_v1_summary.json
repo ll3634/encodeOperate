@@ -1,0 +1,18 @@
+{
+  "n_pairs": 300,
+  "layer": 12,
+  "seed": 123,
+  "split": "train",
+  "eligible_pool_size": 7473,
+  "skipped_non_numeric_count": 0,
+  "direction_norm": 2.303769111633301,
+  "direction_rms": 0.03848176449537277,
+  "method": "paired_observation",
+  "domain": "calculator",
+  "context": "post_tool",
+  "margin_correct_mean": -5.757993,
+  "margin_incorrect_mean": -5.193086,
+  "margin_diff_mean": 0.564907,
+  "correct_sign_fraction": 0.6733333333333333,
+  "description": "d = h_incorrect - h_correct (decision_direction, toward NON-ADOPT). Paired observation method: same GSM8K question, same calculator action, only observation changes from correct to incorrect numeric result."
+}

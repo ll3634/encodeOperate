@@ -1,0 +1,25 @@
+{
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "layer": 12,
+  "position": -1,
+  "tools": [
+    "calculator"
+  ],
+  "split": "train",
+  "seed": 42,
+  "n_samples_analyzed": 400,
+  "n_low_margin": 60,
+  "n_high_margin": 60,
+  "low_percentile": 20.0,
+  "high_percentile": 80.0,
+  "low_margin_threshold": 4.23583984375,
+  "high_margin_threshold": 7.124195098876953,
+  "direction_norm": 2.1881892681121826,
+  "direction_rms": 0.036551132798194885,
+  "margin_stats": {
+    "mean": 5.6701812744140625,
+    "std": 1.7586942911148071,
+    "min": 0.0,
+    "max": 9.624933242797852
+  }
+}

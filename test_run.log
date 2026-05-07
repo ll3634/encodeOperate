@@ -1,0 +1,176 @@
+========================================
+PopQA Pipeline Test (10 samples)
+========================================
+Direction: /home/featurize/work/tmc/scripts/e2e_agent/steering/directions/direction_search_v2.npz
+Model: Qwen/Qwen2.5-7B-Instruct
+N samples: 10
+Results: results/popqa_test
+========================================
+
+=== Running Baseline ===
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-01-25 09:12:51.732175: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-01-25 09:12:52.580703: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-01-25 09:12:54.030320: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Loaded 14267 PopQA samples from data/popqa/popqa_test.jsonl
+Found 1433 samples with s_pop <= 100
+Filtered to 10 samples with s_pop <= 100
+Running on 10 samples
+Loading model: Qwen/Qwen2.5-7B-Instruct
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|██▌       | 1/4 [01:08<03:25, 68.40s/it]Fetching 4 files: 100%|██████████| 4/4 [01:08<00:00, 17.10s/it]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.13it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.10it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.14it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.12it/s]
+Loaded 14267 documents from data/popqa/corpus.jsonl
+Running baseline:   0%|          | 0/10 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Running baseline:  10%|█         | 1/10 [00:01<00:17,  1.98s/it]Running baseline:  20%|██        | 2/10 [00:02<00:11,  1.39s/it]Running baseline:  30%|███       | 3/10 [00:04<00:08,  1.27s/it]Running baseline:  40%|████      | 4/10 [00:05<00:08,  1.45s/it]Running baseline:  50%|█████     | 5/10 [00:06<00:06,  1.22s/it]Running baseline:  60%|██████    | 6/10 [00:07<00:04,  1.03s/it]Running baseline:  70%|███████   | 7/10 [00:08<00:03,  1.12s/it]Running baseline:  80%|████████  | 8/10 [00:09<00:02,  1.06s/it]Running baseline:  90%|█████████ | 9/10 [00:11<00:01,  1.44s/it]Running baseline: 100%|██████████| 10/10 [00:13<00:00,  1.41s/it]Running baseline: 100%|██████████| 10/10 [00:13<00:00,  1.31s/it]
+Saved summary to results/popqa_test/baseline_10_summary.json
+
+=== Results for baseline on PopQA ===
+Success rate: 100.0%
+Mean tool calls: 1.00
+Mean tokens: 428
+
+=== Running JES ===
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-01-25 09:14:29.049895: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-01-25 09:14:29.085989: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-01-25 09:14:29.855998: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Loaded 14267 PopQA samples from data/popqa/popqa_test.jsonl
+Found 1433 samples with s_pop <= 100
+Filtered to 10 samples with s_pop <= 100
+Running on 10 samples
+Loading model: Qwen/Qwen2.5-7B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  1.70it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.68it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  1.65it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.72it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.70it/s]
+Loaded 14267 documents from data/popqa/corpus.jsonl
+Running jes:   0%|          | 0/10 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Running jes:  10%|█         | 1/10 [00:02<00:20,  2.24s/it]Running jes:  20%|██        | 2/10 [00:03<00:12,  1.61s/it]Running jes:  30%|███       | 3/10 [00:05<00:11,  1.60s/it]Running jes:  40%|████      | 4/10 [00:06<00:10,  1.68s/it]Running jes:  50%|█████     | 5/10 [00:07<00:07,  1.44s/it]Running jes:  60%|██████    | 6/10 [00:08<00:04,  1.24s/it]Running jes:  70%|███████   | 7/10 [00:10<00:03,  1.28s/it]Running jes:  80%|████████  | 8/10 [00:11<00:02,  1.23s/it]Running jes:  90%|█████████ | 9/10 [00:13<00:01,  1.58s/it]Running jes: 100%|██████████| 10/10 [00:15<00:00,  1.57s/it]Running jes: 100%|██████████| 10/10 [00:15<00:00,  1.51s/it]
+Saved summary to results/popqa_test/jes_10_summary.json
+
+=== Results for jes on PopQA ===
+Success rate: 100.0%
+Mean tool calls: 1.00
+Mean tokens: 432
+Mean |ρ|: 0.0866
+Achieved rate: 70.0%
+
+=== Running Force Adopt ===
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-01-25 09:14:56.895967: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-01-25 09:14:56.931627: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-01-25 09:14:57.694974: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Loaded 14267 PopQA samples from data/popqa/popqa_test.jsonl
+Found 1433 samples with s_pop <= 100
+Filtered to 10 samples with s_pop <= 100
+Running on 10 samples
+Loading model: Qwen/Qwen2.5-7B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.15it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.12it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.07it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.14it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.12it/s]
+Loaded 14267 documents from data/popqa/corpus.jsonl
+Running force_adopt:   0%|          | 0/10 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Running force_adopt:  10%|█         | 1/10 [00:02<00:18,  2.00s/it]Running force_adopt:  20%|██        | 2/10 [00:03<00:12,  1.62s/it]Running force_adopt:  30%|███       | 3/10 [00:04<00:09,  1.33s/it]Running force_adopt:  40%|████      | 4/10 [00:05<00:07,  1.19s/it]Running force_adopt:  50%|█████     | 5/10 [00:06<00:05,  1.05s/it]Running force_adopt:  60%|██████    | 6/10 [00:06<00:03,  1.08it/s]Running force_adopt:  70%|███████   | 7/10 [00:07<00:02,  1.06it/s]Running force_adopt:  80%|████████  | 8/10 [00:08<00:02,  1.00s/it]Running force_adopt:  90%|█████████ | 9/10 [00:10<00:01,  1.15s/it]Running force_adopt: 100%|██████████| 10/10 [00:11<00:00,  1.22s/it]Running force_adopt: 100%|██████████| 10/10 [00:11<00:00,  1.17s/it]
+Saved summary to results/popqa_test/force_adopt_10_summary.json
+
+=== Results for force_adopt on PopQA ===
+Success rate: 100.0%
+Mean tool calls: 1.00
+Mean tokens: 422
+
+=== Running Force Reject ===
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-01-25 09:15:20.927575: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-01-25 09:15:20.963429: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-01-25 09:15:21.726863: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Loaded 14267 PopQA samples from data/popqa/popqa_test.jsonl
+Found 1433 samples with s_pop <= 100
+Filtered to 10 samples with s_pop <= 100
+Running on 10 samples
+Loading model: Qwen/Qwen2.5-7B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.21it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  2.17it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:01<00:00,  2.12it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.20it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:01<00:00,  2.18it/s]
+Loaded 14267 documents from data/popqa/corpus.jsonl
+Running force_reject:   0%|          | 0/10 [00:00<?, ?it/s]The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+Running force_reject:  10%|█         | 1/10 [00:02<00:22,  2.48s/it]Running force_reject:  20%|██        | 2/10 [00:03<00:14,  1.87s/it]Running force_reject:  30%|███       | 3/10 [00:06<00:15,  2.16s/it]Running force_reject:  40%|████      | 4/10 [00:07<00:10,  1.70s/it]Running force_reject:  50%|█████     | 5/10 [00:08<00:06,  1.35s/it]Running force_reject:  60%|██████    | 6/10 [00:08<00:04,  1.12s/it]Running force_reject:  70%|███████   | 7/10 [00:10<00:03,  1.26s/it]Running force_reject:  80%|████████  | 8/10 [00:11<00:02,  1.29s/it]Running force_reject:  90%|█████████ | 9/10 [00:14<00:01,  1.80s/it]Running force_reject: 100%|██████████| 10/10 [00:18<00:00,  2.32s/it]Running force_reject: 100%|██████████| 10/10 [00:18<00:00,  1.81s/it]
+Saved summary to results/popqa_test/force_reject_10_summary.json
+
+=== Results for force_reject on PopQA ===
+Success rate: 100.0%
+Mean tool calls: 1.00
+Mean tokens: 459
+
+=== Analyzing Subsets ===
+Loading results...
+Loaded 10 samples
+
+Classifying samples...
+  Stealth: 0 samples
+  Red Flag: 0 samples
+  Indifferent: 10 samples
+
+Computing subset metrics...
+
+Saved analysis to results/popqa_test/subset_analysis.json
+
+=== Test Complete ===
+{
+  "subsets": [
+    "Stealth",
+    "Red Flag",
+    "Indifferent"
+  ],
+  "subset_sizes": {
+    "Stealth": 0,
+    "Red Flag": 0,
+    "Indifferent": 10
+  },
+  "success_rates": {
+    "Stealth": {},
+    "Red Flag": {},
+    "Indifferent": {
+      "baseline": {
+        "success_rate": 1.0,
+        "count": 10,
+        "success_count": 10,
+        "mean_tokens": 428.4
+      },
+      "jes": {
+        "success_rate": 1.0,
+        "count": 10,
+        "success_count": 10,
+        "mean_tokens": 432.0
+      },
+      "force_adopt": {
+        "success_rate": 1.0,
+        "count": 10,
+        "success_count": 10,
+        "mean_tokens": 422.4
+      },
+      "force_reject": {
+        "success_rate": 1.0,
+        "count": 10,
+        "success_count": 10,
+        "mean_tokens": 459.0
+      }
+    }
+  },
+  "sample_ids": {
+    "Stealth": [],
+    "Red Flag": [],
+    "Indifferent": [
+      "4707538",
+      "6152824",
+      "5618468",
+      "6385442",
+      "710729",
+      "4854072",
+      "5773566",
+      "2669696",
+      "2961690",
+      "936266"
+    ]
+  }
+}

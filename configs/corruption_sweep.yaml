@@ -1,0 +1,65 @@
+# Corruption Sweep Experiment Configuration
+# Tier 3 attribution: Test robustness to tool corruption
+
+experiment:
+  name: corruption_sweep
+  description: "Test how JES handles corrupted tool outputs"
+  tier: 3
+
+data:
+  dataset: hotpotqa
+  data_path: "data/hotpotqa/hotpot_dev_distractor_v1.json"
+  corpus_path: "data/hotpotqa/corpus.jsonl"
+  n_samples: 50
+  seed: 42
+
+model:
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  dtype: bfloat16
+  device_map: auto
+
+agent:
+  max_steps: 10
+  max_tokens_per_step: 256
+  temperature: 0.0
+
+steering:
+  layer: 12
+  position: -1
+  direction_path: "oral_experiment_v7/direction_boundary.npz"
+
+corruption:
+  probabilities:
+    - 0.0
+    - 0.1
+    - 0.2
+    - 0.3
+    - 0.4
+  mode: random
+  seed: 42
+
+policies:
+  # Run each corruption level with these policies
+  jes:
+    type: jes
+    tau: 0.2
+    eps: 0.02
+    rho_max: 0.25
+    
+  baseline:
+    type: baseline
+
+analysis:
+  plot_type: corruption_curve
+  x_axis: corruption_probability
+  y_axis: success_rate
+  compare:
+    - jes
+    - baseline
+
+output:
+  results_dir: "results/corruption_sweep"
+  save_jsonl: true
+  save_summary: true
+  save_plots: true
+

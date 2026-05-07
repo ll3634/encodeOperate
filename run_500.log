@@ -1,0 +1,46 @@
+========================================
+PopQA 500-Sample Experiment
+========================================
+Direction: /home/featurize/work/tmc/scripts/e2e_agent/steering/directions/direction_search_v2.npz
+Model: Qwen/Qwen2.5-7B-Instruct
+N samples: 500
+Pop limit: 100 (hard samples)
+Seed: 42
+Results: results/popqa_500
+========================================
+
+=== Running Baseline (500 samples) ===
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-01-25 12:34:58.335186: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-01-25 12:34:58.370158: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-01-25 12:34:59.131158: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Loaded 14267 PopQA samples from data/popqa/popqa_test.jsonl
+Found 1433 samples with s_pop <= 100
+Filtered to 500 samples with s_pop <= 100
+Running on 500 samples
+Loading model: Qwen/Qwen2.5-7B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.00it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.95it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.75it/s]
+Traceback (most recent call last):
+  File "/home/featurize/work/tmc/scripts/e2e_agent/runners/run_popqa.py", line 192, in <module>
+    main()
+  File "/home/featurize/work/tmc/scripts/e2e_agent/runners/run_popqa.py", line 188, in main
+    run_experiment(args)
+  File "/home/featurize/work/tmc/scripts/e2e_agent/runners/run_popqa.py", line 91, in run_experiment
+    model, tokenizer = load_model_and_tokenizer(args.model)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/work/tmc/scripts/e2e_agent/runners/run_popqa.py", line 35, in load_model_and_tokenizer
+    model = AutoModelForCausalLM.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/environment/miniconda3/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/environment/miniconda3/lib/python3.11/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/environment/miniconda3/lib/python3.11/site-packages/transformers/modeling_utils.py", line 5048, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/environment/miniconda3/lib/python3.11/site-packages/transformers/modeling_utils.py", line 5468, in _load_pretrained_model
+    _error_msgs, disk_offload_index = load_shard_file(args)
+                        Running baseline:   3%|▎         | 13/500 [00:29<22:08,  2.73s/it]Running baseline:   3%|▎         | 14/500 [00:30<18:39,  2.30s/it]Running baseline:   3%|▎         | 15/500 [00:32<17:12,  2.13s/it]Running baseline:   3%|▎         | 16/500 [00:33<15:15,  1.89s/it]Running baseline:   3%|▎         | 17/500 [00:35<14:15,  1.77s/it]Running baseline:   4%|▎         | 18/500 [00:36<13:37,  1.70s/it]Running baseline:   4%|▍         | 19/500 [00:37<12:42,  1.59s/it]Running baseline:   4%|▍         | 20/500 [00:39<12:31,  1.57s/it]Running baseline:   4%|▍         | 21/500 [00:41<13:06,  1.64s/it]Running baseline:   4%|▍         | 22/500 [00:43<13:55,  1.75s/it]Running baseline:   5%|▍         | 23/500 [00:45<14:20,  1.80s/it]Running baseline:   5%|▍         | 24/500 [00:48<16:35,  2.09s/it]Running baseline:   5%|▌         | 25/500 [00:51<19:27,  2.46s/it]Running baseline:   5%|▌         | 26/500 [00:53<18:30,  2.34s/it]Running baseline:   5%|▌         | 27/500 [00:55<16:47,  2.13s/it]Running baseline:   6%|▌         | 28/500 [00:59<22:26,  2.85s/it]Running baseline:   6%|▌         | 29/500 [01:02<22:32,  2.87s/it]Running baseline:   6%|▌         | 30/500 [01:05<22:11,  2.83s/it]Running baseline:   6%|▌         | 31/500 [01:06<19:39,  2.52s/it]Running baseline:   6%|▋         | 32/500 [01:08<18:09,  2.33s/it]Running baseline:   7%|▋         | 33/500 [01:11<17:57,  2.31s/it]scripts/run_popqa_500.sh: line 55: 43730 Killed                  python runners/run_popqa.py --data-path data/popqa/popqa_test.jsonl --corpus-path data/popqa/corpus.jsonl --direction-path "$DIRECTION_PATH" --output "$RESULTS_DIR/baseline_500.jsonl" --model "$MODEL" --policy baseline --n-samples "$N_SAMPLES" --pop-limit "$POP_LIMIT" --seed "$SEED"

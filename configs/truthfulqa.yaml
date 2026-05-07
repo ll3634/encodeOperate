@@ -1,0 +1,63 @@
+# TruthfulQA Experiment Configuration
+# Tier 1 diagnostic: Over-reliance (should reject search tool)
+
+experiment:
+  name: truthfulqa_tier1
+  description: "Test agent's ability to reject misleading search for misconceptions"
+  tier: 1
+  target_side: negative  # Should reject tool
+
+data:
+  dataset: truthfulqa
+  data_path: "data/truthfulqa/TruthfulQA.csv"
+  corpus_path: null  # Use mock search
+  n_samples: 100
+  seed: 42
+  misconception_only: true  # Focus on red-flag categories
+
+model:
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  dtype: bfloat16
+  device_map: auto
+
+agent:
+  max_steps: 10
+  max_tokens_per_step: 256
+  temperature: 0.0
+  tools:
+    - search
+    - calculator
+
+steering:
+  layer: 12
+  position: -1
+  direction_path: "oral_experiment_v7/direction_boundary.npz"
+  direction_key: "decision_direction"
+
+policies:
+  baseline:
+    type: baseline
+    
+  jes:
+    type: jes
+    tau: 0.2
+    eps: 0.02
+    rho_max: 0.25
+    
+  force_reject:
+    type: forced
+    force_adopt: false
+    rho_magnitude: 0.5
+
+evaluation:
+  score_mode: any
+  metrics:
+    - success_rate
+    - mean_tool_calls
+    - rejection_rate  # How often it correctly rejected search
+
+output:
+  results_dir: "results/truthfulqa"
+  save_jsonl: true
+  save_summary: true
+

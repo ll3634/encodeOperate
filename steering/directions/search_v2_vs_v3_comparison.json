@@ -1,0 +1,13 @@
+{
+  "a": "steering/directions/direction_search_v2.npz",
+  "b": "steering/directions/direction_search_v3.npz",
+  "key": "decision_direction",
+  "dim": 3584,
+  "norm_a": 2.0394062995910645,
+  "norm_b": 4.388852119445801,
+  "rms_a": 0.034065891057252884,
+  "rms_b": 0.07331063598394394,
+  "cosine": -0.1286479969069315,
+  "abs_cosine": 0.1286479969069315,
+  "note": "If abs_cosine ~ 1.0, the directions are essentially the same up to sign."
+}

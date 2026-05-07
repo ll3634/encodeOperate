@@ -1,0 +1,77 @@
+# HotpotQA Experiment Configuration
+# Tier 1 diagnostic: Under-reliance (should adopt search tool)
+
+experiment:
+  name: hotpotqa_tier1
+  description: "Test agent's ability to adopt search tool for multi-hop QA"
+  tier: 1
+  target_side: positive  # Should adopt tool
+
+data:
+  dataset: hotpotqa
+  data_path: "data/hotpotqa/hotpot_dev_distractor_v1.json"
+  corpus_path: "data/hotpotqa/corpus.jsonl"
+  n_samples: 100
+  seed: 42
+
+model:
+  name: "Qwen/Qwen2.5-7B-Instruct"
+  dtype: bfloat16
+  device_map: auto
+
+agent:
+  max_steps: 10
+  max_tokens_per_step: 256
+  temperature: 0.0
+  tools:
+    - search
+    - calculator
+
+steering:
+  layer: 12
+  position: -1  # Last token
+  direction_path: "oral_experiment_v7/direction_boundary.npz"
+  direction_key: "decision_direction"
+
+policies:
+  baseline:
+    type: baseline
+    
+  jes:
+    type: jes
+    tau: 0.2
+    eps: 0.02
+    rho_max: 0.25
+    
+  jes_aggressive:
+    type: jes
+    tau: 0.1
+    rho_max: 0.4
+    
+  fixed_mild:
+    type: fixed_rho
+    rho: -0.1
+    
+  fixed_strong:
+    type: fixed_rho
+    rho: -0.25
+    
+  force_adopt:
+    type: forced
+    force_adopt: true
+    rho_magnitude: 0.5
+
+evaluation:
+  score_mode: any  # exact, fuzzy, contains, any
+  metrics:
+    - success_rate
+    - mean_tool_calls
+    - mean_tokens
+    - failure_attribution
+
+output:
+  results_dir: "results/hotpotqa"
+  save_jsonl: true
+  save_summary: true
+  save_plots: true
+
