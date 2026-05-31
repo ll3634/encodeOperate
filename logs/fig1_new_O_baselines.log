@@ -1,52 +1,0 @@
-nohup: ignoring input
-[directions]
-  O1_amnesic: cos(O1,E1)=-0.0664 → cos(O1_noE1,E1)=+0.0000  cos(O1_noE1,A)=-0.0340
-  O_sae_proj      : cos_A=-0.0067  cos_ev=+0.0099  ||perp||=1.0000
-  O_post_v1       : cos_A=+0.0317  cos_ev=-0.0252  ||perp||=1.0000
-  O_meandiff      : cos_A=-0.0027  cos_ev=-0.0119  ||perp||=1.0000
-  O_sae_f1        : cos_A=+0.0020  cos_ev=-0.0129  ||perp||=1.0000
-  O_sae_f2        : cos_A=+0.0040  cos_ev=-0.0402  ||perp||=1.0000
-  O_sae_f3        : cos_A=-0.0163  cos_ev=-0.0004  ||perp||=1.0000
-  total: 7 directions
-
-[cohort] N=100  baseline mean=-4.886
-
-[load model] /home/featurize/work/models/Qwen2.5-7B-Instruct
-2026-05-05 11:18:39.472294: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2026-05-05 11:18:40.492073: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.06s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.29s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.08s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.08it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.08s/it]
-[injections]
-  [  1/100]  ETA=52s
-  [  5/100]  ETA=32s
-  [ 10/100]  ETA=28s
-  [ 15/100]  ETA=25s
-  [ 20/100]  ETA=23s
-  [ 25/100]  ETA=22s
-  [ 30/100]  ETA=20s
-  [ 35/100]  ETA=19s
-  [ 40/100]  ETA=17s
-  [ 45/100]  ETA=16s
-  [ 50/100]  ETA=14s
-  [ 55/100]  ETA=13s
-  [ 60/100]  ETA=11s
-  [ 65/100]  ETA=10s
-  [ 70/100]  ETA=8s
-  [ 75/100]  ETA=7s
-  [ 80/100]  ETA=6s
-  [ 85/100]  ETA=4s
-  [ 90/100]  ETA=3s
-  [ 95/100]  ETA=1s
-  [100/100]  ETA=0s
-
-[results — sorted by |Δm|_perp]
-  O_sae_proj          AUROC=0.522  |Δm|=2.914  CI=[2.114,3.790]  ** OPERATIVE **
-  O_meandiff          AUROC=0.520  |Δm|=0.944  CI=[0.774,1.105]  ** OPERATIVE **
-  O1_amnesic          AUROC=0.507  |Δm|=0.904  CI=[0.792,1.003]  ** OPERATIVE **
-  O_sae_f3            AUROC=0.608  |Δm|=0.394  CI=[0.314,0.481]  ** OPERATIVE **
-  O_post_v1           AUROC=0.517  |Δm|=0.139  CI=[0.115,0.164]  ** OPERATIVE **
-  O_sae_f1            AUROC=0.578  |Δm|=0.079  CI=[0.050,0.105]    below null  
-  O_sae_f2            AUROC=0.587  |Δm|=0.016  CI=[0.001,0.044]    below null  
-
-[saved] /home/featurize/work/tmc/scripts/e2e_agent/results/fig1_new_O/results.json

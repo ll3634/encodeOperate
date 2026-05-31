@@ -27,3 +27,8 @@ env/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Run logs / temporary outputs
+logs/
+*.log
+nohup.out

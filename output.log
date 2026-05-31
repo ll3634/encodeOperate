@@ -1,75 +1,0 @@
-nohup: ignoring input
-CUDA_VISIBLE_DEVICES=0
-=== Agent-Specific Dissociation Test ===
-Model: Qwen/Qwen2.5-7B-Instruct
-
---- FULL RUN (N=486) ---
-Loading labels and baseline step-0 data...
-Built sample table: 486 samples with step-0 observations
-Label distribution: label0=97, label1=389
-Condition D (full ReAct) stop rate: 96.9%
-A3 rescued samples in table: 19
-Loading model: Qwen/Qwen2.5-7B-Instruct
-2026-03-23 14:56:50.425863: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2026-03-23 14:56:51.793721: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.14it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.09it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.05it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.07it/s]
-[Resume] Found 486 already-completed samples, skipping them.
-Running conditions:   0%|          | 0/486 [00:00<?, ?it/s]Running conditions: 100%|██████████| 486/486 [00:00<00:00, 1389524.02it/s]
-Saved metrics to: results/agent_specific_dissociation/metrics.json
-
-======================================================================
-AGENT-SPECIFIC DISSOCIATION TEST — FULL RESULTS
-======================================================================
-
-N = 486
-
-Parse failures: A=0, B=0, B_flipped=0, C_noncanon=0, E=0
-
-Cond             Rate   Description
-------------------------------------------------------------------------
-A (judge)      88.9%   Is evidence sufficient? NO=insufficient
-B (select)     80.7%   A=search, B=answer  (no agent context)
-B_flipped       0.0%   A=answer, B=search  (order-sensitivity check)
-C (lite)       86.4%   A=search, B=answer  (with agent tool context)
-D (full)        3.1%   Full ReAct baseline (multi-turn scratchpad)
-E (prompted)    0.0%   Prompted ReAct: assess before step-1
-
-Key metrics:
-  Suppression gap    (B - D):        +77.6%
-  Lite-to-full gap   (C - D):        +83.3%
-  Order sensitivity  (B - B_flipped): +80.7%
-  Prompted effect    (E - D):         -3.1%
-  Strict dissociation rate:           77.2%  (375/486 samples)
-
-McNemar tests:
-  B vs D      : p = 0.0000  *  (table: [[94, 0], [377, 15]])
-  B_flipped vs D: p = 1.0000    (table: [[0, 0], [0, 0]])
-  B vs B_flipped: p = 1.0000    (table: [[0, 0], [0, 0]])
-  C vs D      : p = 0.0000  *  (table: [[65, 1], [406, 14]])
-  E vs D      : p = 1.0000    (table: [[0, 0], [0, 0]])
-
-By evidence label:
-  label0_insufficient (n=97):
-    A_insufficient: 0.9896907216494846
-    A_insufficient: 99.0%
-    B_continue:     94.8%
-    C_continue:     95.9%
-    D_continue:     6.2%
-  label1_partial (n=389):
-    A_insufficient: 0.8637532133676092
-    A_insufficient: 86.4%
-    B_continue:     77.1%
-    C_continue:     84.1%
-    D_continue:     2.3%
-
-A3 rescued subset (n=19; label0=4, label1=15):
-    a_insufficient_rate: 100.0%
-    b_continue_rate: 94.7%
-    c_continue_rate: 100.0%
-    d_continue_rate: 0.0%
-    strict_dissociation_n: 18
-Saved summary to: results/agent_specific_dissociation/summary.md
-
-All outputs in: results/agent_specific_dissociation/

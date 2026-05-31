@@ -1,48 +1,0 @@
-Started: Thu Mar 26 14:42:20 UTC 2026
-2026-03-26 14:42:26.163894: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2026-03-26 14:42:27.215420: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
-Loading labels...
-Loading baseline traces...
-Loading probe direction...
-  Probe direction: shape=(3584,), balanced_acc=0.773, auroc=0.862
-Built sample list: 486 samples
-[Dry run] Using first 20 samples
-Loading model: Qwen/Qwen2.5-7B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.08it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.04it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.03it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.00s/it]
-/environment/miniconda3/lib/python3.11/site-packages/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.8` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-  warnings.warn(
-/environment/miniconda3/lib/python3.11/site-packages/transformers/generation/configuration_utils.py:651: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `20` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
-  warnings.warn(
-The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
-  [1/20] short=0 skipped=0 thought_len=36 boundary=search
-  [2/20] short=0 skipped=0 thought_len=36 boundary=final
-  [3/20] short=0 skipped=0 thought_len=48 boundary=search
-  [20/20] short=0 skipped=0 thought_len=41 boundary=search
-[Dry run] Stopping after 20 samples
-
-Collection complete: 20 samples, 0 skipped, 0 short thoughts
-
-Dataset: N=20, label0=5, label1=15
-Short thoughts (<10 tokens): 0
-Behavioral stop: 20, continue: 0
-A3 rescued: 1
-Thought length: mean=44.2, median=43.5, min=20, max=71
-
-=== Training probes at each position ===
-  p0_input: AUROC=0.6667, BalAcc=0.5000
-  p1_25pct: AUROC=0.3333, BalAcc=0.5000
-  p2_50pct: AUROC=0.6667, BalAcc=0.5000
-  p3_75pct: AUROC=0.0000, BalAcc=0.3333
-  p4_100pct: AUROC=0.6667, BalAcc=0.3333
-
-=== Probe direction projection analysis ===
-Traceback (most recent call last):
-  File "/home/featurize/work/tmc/scripts/e2e_agent/scripts/thought_erosion_probe.py", line 851, in <module>
-    main()
-  File "/home/featurize/work/tmc/scripts/e2e_agent/scripts/thought_erosion_probe.py", line 757, in main
-    print(f"  {pos_name}: "
-          ^^^^^^^^^^^^^^^^^
-TypeError: unsupported format string passed to NoneType.__format__
-Finished: Thu Mar 26 14:43:28 UTC 2026

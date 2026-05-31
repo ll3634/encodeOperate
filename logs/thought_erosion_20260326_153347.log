@@ -1,24 +1,0 @@
-Started: Thu Mar 26 15:33:47 UTC 2026
-2026-03-26 15:33:54.375977: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
-To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2026-03-26 15:33:55.690675: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
-Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
-Loading labels...
-Loading baseline traces...
-Loading probe direction...
-  Probe direction: shape=(3584,), balanced_acc=0.773, auroc=0.862
-Built sample list: 486 samples
-
-[NOTE] This experiment uses REACT_THOUGHT_SYSTEM_PROMPT (allows 'Thought: ...').
-       Phase-1 probe direction was extracted with DEFAULT_SYSTEM_PROMPT (no Thought).
-       p0_input activations come from a DIFFERENT prompt format than Phase-1.
-       Within-experiment comparisons (p0→p4 erosion) are internally consistent.
-       Cross-experiment comparison to Phase-1 AUROC requires caution.
-
-Loading model: Qwen/Qwen2.5-7B-Instruct
-Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.14it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.10it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.06it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.07it/s]
-/environment/miniconda3/lib/python3.11/site-packages/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.8` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
-  warnings.warn(
-/environment/miniconda3/lib/python3.11/site-packages/transformers/generation/configuration_utils.py:651: UserWarning: `do_sample` is set to `False`. However, `top_k` is set to `20` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_k`.
-  warnings.warn(
-The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
