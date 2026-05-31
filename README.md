@@ -56,6 +56,35 @@ Each runner writes its outputs (JSONL traces, per-config sweep files,
 `QUICK_START.md` for the output layout and the GO / NO-GO interpretation
 of the diagnosis files.
 
+## Paper → Script Mapping
+
+Section numbers refer to the submitted paper. Each row lists the primary
+entry-point script; closely related helpers (figure generation,
+aggregation, follow-up audits) are listed in parentheses.
+
+| Paper § | Result | Script(s) |
+|---|---|---|
+| §2 — Behavioral matrix | Margin-projection A/B matrix across model families × datasets | `scripts/b2_margin_projection_matrix.py` (with `scripts/behavioral_readout.py`) |
+| §3 / §5 — Functional decomposition (Qwen L20) | full / parallel / perpendicular causal intervention at ρ = −0.20 | `scripts/run_decomposition_test.py` |
+| §6 — Anti-cue locality (2×3 factorial) | target_location × wrapper_semantics paired contrasts and locality patch | `scripts/analyze_factorial_2x3.py` (with `scripts/patch_mlp20_task_missingness_locality.py`) |
+| §8.3 — CI-hardened decomposition | bootstrap CIs + permutation null on cross-model decomposition | `scripts/decomposition_ci_hardened_cross_model.py` (with `scripts/cos_evidence_action_bootstrap.py`) |
+| §9 — Cross-model probes (AUROC) | Per-family probe / action-direction extraction + paired corruption | `scripts/cross_model_full.py` |
+| §10 — Qwen circuit localization (L18 attention, KV2) | KV-group split of `attn_L18` cross-prompt patching | `scripts/patch_L18_kv_groups.py` (with `scripts/kv2_ablation_probe_auroc.py`) |
+| §15.1 — Agent-format dissociation | B\_debiased vs D in the agent-vs-base contrast | `scripts/agent_specific_dissociation.py` |
+| §15.2 — Probe insufficiency ≠ search | Clean-sufficiency probe via synthetic 1-SF → 2-SF augmentation | `scripts/probe_sufficiency_synthetic.py` |
+| §15.7 — Fine-tuning stress test (Phase C verdict) | M1 / M2 verdict over per-adapter decompositions | `scripts/ft_in_adapter_verdict.py` (with `scripts/ft_in_adapter_decomposition.py`, `scripts/ft_in_adapter_aggregate_balanced.py`) |
+| §17 — Rotation 4-way decomposition | Matched-geometry erasure scan along E → {D3, D1, random}; figure + permutation tests | `scripts/nullspace_rotation_scan.py` (with `scripts/fig3_rotation_plot.py`, `scripts/rotation_significance.py`) |
+| §18 — Dose-response (Qwen L20, gain ratio) | Per-direction ρ-sweep + slope / gain-ratio readout | `scripts/dose_response_gain_ratio.py` |
+| §19 — Probe robustness audit | 10-seed probe re-fit + §8.3 decomposition replay | `scripts/probe_robustness_sweep.py` |
+| §20 — Cross-family CI natural-norm | Natural-norm parallel/perp decomposition across Qwen / Gemma / Mistral | `scripts/fig3_natural_norm_decomp.py` (with `scripts/decomposition_ci_hardened_cross_model.py`) |
+| §21 — DAS | Distributed Alignment Search for evidence vs action | `scripts/das_evidence_action.py` |
+| §27 — Partial-alignment falsification | Gatekeeping Gates 1–3 (margin distribution, forced push, slope) | `scripts/run_gatekeeping_experiments.py` |
+| §28 — Within-Qwen-family scale | Scaling-law difficulty audit on Qwen2.5-{7B,14B,32B} + Qwen3-32B; figure | `scripts/scaling_difficulty_audit.py` (with `scripts/_figure1_invariance.py`, `scripts/_robustness_st_contrast_layersweep.py`) |
+| §29 — Boundary-case Llama / R1 | Llama-3.1-8B paired-corruption root-cause + R1 margin-action decoupling | `scripts/llama_root_cause.py` (with `scripts/r1_decoupling_mechanism.py`, `scripts/r1_narrative_robustness.py`) |
+
+If a script path differs from the table, search by experiment name —
+filenames in `scripts/` are kept descriptive throughout.
+
 ## Repository Layout
 
 ```
