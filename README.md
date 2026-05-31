@@ -1,12 +1,12 @@
-# Code for "Decodability Is Not Control: Why Tool-Using LLM Agents Commit Before Evidence Is Sufficient" — NeurIPS 2026 Submission
+# Research code: tool-using LLM agents and the decodability-vs-control dissociation
 
-> **Note for reviewers.** This repository accompanies an anonymous NeurIPS
-> 2026 submission and is hosted via Anonymous GitHub. It is an active
-> research codebase: the directories listed under "Repository Layout"
-> contain the library code used by every experiment in the paper, and
-> `scripts/` contains the per-experiment entry points (both the runs
-> cited in the paper and exploratory scripts kept for transparency about
-> the research process).
+> **Note.** This repository is an anonymous code release accompanying a
+> paper currently under double-blind review. It is an active research
+> codebase: the directories listed under "Repository Layout" contain the
+> library code used by every experiment in the paper, and `scripts/`
+> contains the per-experiment entry points (both the runs cited in the
+> paper and exploratory scripts kept for transparency about the
+> research process).
 
 ## Overview
 
@@ -175,12 +175,12 @@ Qwen3-32B snapshot.
   MuSiQue (CC BY 4.0), PopQA (MIT), 2WikiMultiHop (Apache 2.0). The
   expected on-disk layout is `data/<dataset>/<file>` as referenced by the
   YAML configs in `configs/` and by the top-level launchers. No new
-  dataset is released as part of this submission.
+  dataset is released as part of this project.
 
 ## License
 
-Anonymized for review. Final license (Apache 2.0) will be applied at
-camera-ready de-anonymization.
+Released under Apache 2.0 (see `LICENSE`). Copyright attribution will be
+filled in once the project is de-anonymized.
 
 ## A note on code quality
 
@@ -188,4 +188,4 @@ This repository reflects an active research codebase rather than a
 production-grade release. `scripts/` contains exploratory and superseded
 runs alongside the scripts cited in the paper; these are retained for
 transparency about the research process. A cleaned-up release will
-accompany the camera-ready version.
+accompany the final version.
