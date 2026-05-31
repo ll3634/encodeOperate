@@ -139,11 +139,13 @@ launch the experiments cited in the paper. They invoke entries under
 | `run_positive_control.sh` | `scripts/positive_control_judge.py` | Positive-control validity check for judge conditions A / A_v2 |
 | `run_qwen3_sanity.sh` | `scripts/qwen3_circuit_sanity.py` | Cross-family Qwen3-32B circuit sanity (waits for download, then runs) |
 
-The launchers assume the layout used during development (paths like
-`/home/featurize/work/tmc/scripts/e2e_agent/`); when running locally,
-either `cd` into the repository root first or edit the launcher's `cd`
-line — every Python script underneath is invoked relative to the
-repository root.
+Each launcher `cd`s into its own directory (`cd "$(dirname "$0")"`), so
+invoking them from anywhere — e.g. `bash run_hotpotqa_v3.sh` from the
+repository root — resolves the relative paths inside (`scripts/...`,
+`data/...`, `steering/directions/...`, `results/...`) against the
+repository root. `run_qwen3_sanity.sh` additionally honours the
+`MODEL_DIR` and `LOG` environment variables for locating the
+Qwen3-32B snapshot.
 
 ## Environment and Hardware
 

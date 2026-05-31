@@ -3,7 +3,7 @@
 ## Run Full Pipeline (PopQA)
 
 ```bash
-cd /home/featurize/work/tmc/scripts/e2e_agent
+cd <repo-root>
 
 python scripts/run_verify_critical_pipeline.py \
   --data-path data/popqa/popqa_test.jsonl \
@@ -79,8 +79,10 @@ results/verify_critical_v5/
 - Solution: Use locally cached model or disable proxy
 
 **Missing Dependencies**: `transformers`, `torch`, etc.
-- Solution: `pip install -r requirements.txt`
+- Solution: `pip install torch transformers accelerate peft numpy scipy scikit-learn pandas matplotlib pyyaml tqdm`
 
 **HotpotQA Data**: Need to download from https://hotpotqa.github.io/
-- Then run: `python datasets/hotpotqa.py --build-corpus --input <path> --output data/hotpotqa/corpus.jsonl`
+- Place the distractor dev file at `data/hotpotqa/hotpot_dev_distractor_v1.json` and the
+  matching corpus at `data/hotpotqa/corpus.jsonl`; both paths are referenced by
+  `run_hotpotqa_v3.sh` and `configs/hotpotqa.yaml`.
 

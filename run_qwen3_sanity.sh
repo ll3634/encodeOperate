@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
-# Auto-launch qwen3_circuit_sanity.py when model download completes.
-# Run from scripts/e2e_agent/
-MODEL_DIR="/home/featurize/work/models/Qwen3-32B"
-LOG="/home/featurize/work/models/qwen3_sanity.log"
+# Auto-launch qwen3_circuit_sanity.py when the local Qwen3-32B snapshot
+# finishes downloading. Override MODEL_DIR / LOG via environment variables
+# if the model lives elsewhere.
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+MODEL_DIR="${MODEL_DIR:-$SCRIPT_DIR/models/Qwen3-32B}"
+LOG="${LOG:-$SCRIPT_DIR/logs/qwen3_sanity.log}"
+mkdir -p "$(dirname "$LOG")"
 
 log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$LOG"; }
 

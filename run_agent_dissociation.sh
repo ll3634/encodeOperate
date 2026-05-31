@@ -1,9 +1,10 @@
 #!/bin/bash
 # Agent-Specific Dissociation Test runner
-# Run from: /home/featurize/work/tmc/scripts/e2e_agent/
+# Run from the repository root (the script cd's into its own directory).
 
 set -e
 cd "$(dirname "$0")"
+mkdir -p results/agent_specific_dissociation
 
 # Ensure GPU is visible (override empty CUDA_VISIBLE_DEVICES if set)
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"

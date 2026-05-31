@@ -1,5 +1,8 @@
 #!/bin/bash
-cd /home/featurize/work/tmc/scripts/e2e_agent
+set -e
+cd "$(dirname "$0")"
+
+mkdir -p results
 
 nohup python scripts/run_verify_critical_pipeline.py \
     --dataset hotpotqa \
